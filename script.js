@@ -46,7 +46,7 @@ function nopes(e) {
 function greens(e) {
 	this.style.backgroundColor = 'var(--green)'
 	positionGreen = Array.from(this.parentNode.children).indexOf(this);
-	keyboard.style.opacity = "0.3";
+	keyboard.style.opacity = "0.2";
 	modalKeyboard.style.display = 'block';
 	modalKeyboard.style.borderColor = 'var(--green)';
 	modalKeys.forEach(key => key.addEventListener('click', greenClick));
@@ -70,7 +70,7 @@ function greenClick(k) {
 function yellows(e) {
 	this.style.backgroundColor = 'var(--yellow)'
 	positionYellow = Array.from(this.parentNode.children).indexOf(this);
-	keyboard.style.opacity = "0.3";
+	keyboard.style.opacity = "0.2";
 	modalKeyboard.style.display = 'block';
 	modalKeyboard.style.borderColor = 'var(--yellow)';
 	modalKeys.forEach(key => key.addEventListener('click', yellowClick));

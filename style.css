@@ -172,7 +172,7 @@ h2 {
 	width: 670px;
 	padding: 2em;
 	background: var(--accent);
-	border: solid 2px var(--green);
+	border: solid 4px var(--green);
 	border-radius: 1em;
 	box-shadow: 0 0 20px var(--shadow);
 }
