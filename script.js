@@ -1,20 +1,22 @@
 const cluesElement = document.querySelector('.clues__items');
 let cluesItemElement = '';
-let validWords = dictionary;
+let validWords = dictionary.sort();
 const keyboard = document.querySelector('.keyboard__items');
 const keyItems = keyboard.querySelectorAll('.keyboard__item');
-const oopsItem = keyboard.querySelector('.keyboard__oops');
 let nopeLetters = [];
 const green = document.querySelector('.green__items');
 const greenItems = green.querySelectorAll('.green__item');
 const yellow = document.querySelector('.yellow__items');
 const yellowItems = yellow.querySelectorAll('.yellow__item');
 const modalKeyboard = document.querySelector('.modal__keyboard');
+const oopsItem = modalKeyboard.querySelector('.keyboard__oops');
 let filteredWords =[];
 let tempWords = [];
 const modalKeys = modalKeyboard.querySelectorAll('.keyboard__item');
 let positionGreen = -1;
+let greenFlag = false;
 let positionYellow = -1;
+let yellowFlag = false;
 const startOver = document.querySelector('.btn__restart');
 
 function filterClues() {
@@ -44,9 +46,10 @@ function nopes(e) {
 } 
 
 function greens(e) {
-	this.style.backgroundColor = 'var(--green)'
+	greenFlag = true;
+	this.style.backgroundColor = 'var(--green)';
 	positionGreen = Array.from(this.parentNode.children).indexOf(this);
-	keyboard.style.opacity = "0.2";
+	keyboard.style.opacity = "0.1";
 	modalKeyboard.style.display = 'block';
 	modalKeyboard.style.borderColor = 'var(--green)';
 	modalKeys.forEach(key => key.addEventListener('click', greenClick));
@@ -63,14 +66,16 @@ function greenClick(k) {
 	})
 	validWords = filteredWords;
 	filterClues()
+	greenFlag = false; 
 	modalKeys.forEach(key => key.removeEventListener('click', greenClick));	
 	keyItems.forEach(key => {key.textContent == greenLetter? key.style.backgroundColor = 'var(--green)': null;} )
 }
 
 function yellows(e) {
+	yellowFlag = true;
 	this.style.backgroundColor = 'var(--yellow)'
 	positionYellow = Array.from(this.parentNode.children).indexOf(this);
-	keyboard.style.opacity = "0.2";
+	keyboard.style.opacity = "0.05";
 	modalKeyboard.style.display = 'block';
 	modalKeyboard.style.borderColor = 'var(--yellow)';
 	modalKeys.forEach(key => key.addEventListener('click', yellowClick));
@@ -91,16 +96,24 @@ function yellowClick(k) {
 	})
 	validWords = filteredWords;
 	filterClues()
+	yellowFlag = false;
 	modalKeys.forEach(key => key.removeEventListener('click', yellowClick));
 	keyItems.forEach(key => {key.textContent == yellowLetter? key.style.backgroundColor = 'var(--yellow)': null;} )
 }
 
 function oopsReset() {
-	keyItems.forEach(key => delete key.dataset.nope);
-	validWords = dictionary;
+	keyboard.style.opacity = "1";
+	modalKeyboard.style.display = 'none';
+	if (greenFlag === true) {
+		greenItems[positionGreen].style.backgroundColor = 'var(--back)'; 
+		greenFlag = false;
+	}  
+
+	if (yellowFlag === true) {
+		yellowItems[positionYellow].style.backgroundColor = 'var(--back)';
+		yellowFlag = false;
+	}
 }
-
-
 
 keyItems.forEach(key => key.addEventListener('click', nopes));
 greenItems.forEach(key => key.addEventListener('click', greens));
