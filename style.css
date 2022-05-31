@@ -193,6 +193,8 @@ p {
 
 .modal__keyboard {
 	display: none;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
 	top: 25vh;
 	left: 50vw;

@@ -50,7 +50,7 @@ function greens(e) {
 	this.style.backgroundColor = 'var(--green)';
 	positionGreen = Array.from(this.parentNode.children).indexOf(this);
 	keyboard.style.opacity = "0.1";
-	modalKeyboard.style.display = 'block';
+	modalKeyboard.style.display = 'flex';
 	modalKeyboard.style.borderColor = 'var(--green)';
 	modalKeys.forEach(key => key.addEventListener('click', greenClick));
 }
@@ -76,7 +76,7 @@ function yellows(e) {
 	this.style.backgroundColor = 'var(--yellow)'
 	positionYellow = Array.from(this.parentNode.children).indexOf(this);
 	keyboard.style.opacity = "0.05";
-	modalKeyboard.style.display = 'block';
+	modalKeyboard.style.display = 'flex';
 	modalKeyboard.style.borderColor = 'var(--yellow)';
 	modalKeys.forEach(key => key.addEventListener('click', yellowClick));
 }
