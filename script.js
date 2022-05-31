@@ -113,6 +113,8 @@ function oopsReset() {
 		yellowItems[positionYellow].style.backgroundColor = 'var(--back)';
 		yellowFlag = false;
 	}
+	modalKeys.forEach(key => key.removeEventListener('click', yellowClick));
+	modalKeys.forEach(key => key.removeEventListener('click', greenClick));
 }
 
 keyItems.forEach(key => key.addEventListener('click', nopes));
